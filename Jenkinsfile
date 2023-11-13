@@ -22,5 +22,13 @@ pipeline{
         }
 
         // Add the "Deploy" stage here
+        stage('Release') {
+            steps {
+                sh '''
+                    oc project zknwlq-greetings
+                    oc start-build greeting-service  --follow --wait
+                '''
+            }
+        }
     }
 }
